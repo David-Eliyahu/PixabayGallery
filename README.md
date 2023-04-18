@@ -19,6 +19,10 @@ Once received, try to **finish all tasks in 4 days** period.
 
 ## Features List
 
+### Use Jetpack compose
+convert the current UI using Jetpack compose use the link bellow as a guidline 
+https://developer.android.com/jetpack/compose?gclid=CjwKCAjw3POhBhBQEiwAqTCuBgDHopPadv8RZI0uE9sEjsNblwMvkwUmUEJqmHJ--cNx38K8Rt2DzBoCqEYQAvD_BwE&gclsrc=aw.ds
+
 ### Support for landscape mode
 
 Add support for landscape mode.
