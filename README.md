@@ -45,5 +45,5 @@ Check the docs to understand to fetch it.
 2. Create a new branch in your repo.
 3. Add the above features and commit the changes.
 4. Create a new pull-request from the created branch to the 'main' branch.
-5. Send us a link to the PR you've created to <android-candidate@shutterfly.com>
+5. Send us a link to the PR you've created to <deliyahu@shutterfly.com>
 
