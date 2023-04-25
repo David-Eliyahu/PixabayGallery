@@ -7,7 +7,9 @@ import com.shutterfly.pixabaygallery.network.GalleryPagingSource
 
 class GalleryRepository {
 
-    private val defaultPagingConfig by lazy { PagingConfig(pageSize = 30, enablePlaceholders = false) }
+    private val defaultPagingConfig by lazy {
+        PagingConfig(pageSize = 30, enablePlaceholders = false)
+    }
 
     fun searchImages(keyword: String) = Pager(config = defaultPagingConfig) {
         GalleryPagingSource(keyword)
