@@ -7,6 +7,7 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import com.shutterfly.pixabaygallery.models.GalleryItem
 import com.shutterfly.pixabaygallery.repositories.GalleryRepository
 
 class GalleryViewModel(
@@ -18,16 +19,22 @@ class GalleryViewModel(
     }
 
     private val _currentKeyword = MutableLiveData(DEFAULT_SEARCH_KEYWORD)
+    var currentImage = MutableLiveData<GalleryItem?>(null)
 
     val imageListPagingFlow = _currentKeyword.switchMap { keyword ->
         repository.searchImages(keyword)
     }.asFlow().cachedIn(viewModelScope)
 
-
     fun onSearchButtonClicked(keyword: String) {
         if (keyword.isNotBlank()) {
             _currentKeyword.value = keyword
         }
+    }
+
+    fun onImageClicked(
+        galleryItem: GalleryItem
+    ) {
+        currentImage.value = galleryItem
     }
 }
 

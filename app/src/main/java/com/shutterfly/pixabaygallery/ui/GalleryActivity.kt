@@ -12,14 +12,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.shutterfly.pixabaygallery.repositories.GalleryRepository
-import com.shutterfly.pixabaygallery.ui.home.GalleryScreen
 import com.shutterfly.pixabaygallery.viewmodels.GalleryViewModel
 import com.shutterfly.pixabaygallery.viewmodels.GalleryViewModelFactory
 
 class GalleryActivity : AppCompatActivity() {
 
+    private val galleryRepository by lazy {
+        GalleryRepository()
+    }
     private val viewModel by viewModels<GalleryViewModel> {
-        GalleryViewModelFactory(GalleryRepository())
+        GalleryViewModelFactory(galleryRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,12 +46,21 @@ class GalleryActivity : AppCompatActivity() {
                                     viewModel.onSearchButtonClicked(keyword)
                                 },
                                 navigateToImage = {
+                                    viewModel.onImageClicked(it)
                                     navController.navigate(Screen.FullImageScreen.route)
                                 }
                             )
                         }
-                        composable(route = Screen.FullImageScreen.route) {
-
+                        composable(
+                            route = Screen.FullImageScreen.route
+                        ) {
+                            val previewUrl = viewModel.currentImage.value?.previewUrl.orEmpty()
+                            FullImageScreen(
+                                previewUrl = previewUrl,
+                                navigateBack = {
+                                    navController.navigateUp()
+                                }
+                            )
                         }
                     }
                 }
