@@ -1,6 +1,10 @@
 package com.shutterfly.pixabaygallery.ui
 
 import android.content.res.Configuration
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -11,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.text.KeyboardActions
@@ -28,11 +33,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.BottomStart
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.Alignment.Companion.TopStart
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -45,15 +54,17 @@ import com.shutterfly.pixabaygallery.models.GalleryItem
 
 @Composable
 fun GalleryScreen(
+    keyword: String,
     galleryItems: LazyPagingItems<GalleryItem>,
     onSearch: (String) -> Unit = {},
-    navigateToImage: (GalleryItem) -> Unit = {}
+    navigateToImage: (GalleryItem) -> Unit = {},
+    onItemFavoriteClick: (String) -> Unit = {}
 ) {
     val configuration = LocalConfiguration.current
     val numberOfColumns =
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 4 else 3
     var searchKeyword by remember {
-        mutableStateOf("")
+        mutableStateOf(keyword)
     }
     val applySearch = {
         onSearch(searchKeyword)
@@ -76,7 +87,7 @@ fun GalleryScreen(
                     imeAction = ImeAction.Search
                 ),
                 keyboardActions = KeyboardActions(
-                    onDone = {
+                    onSearch = {
                         applySearch()
                     }
                 )
@@ -129,6 +140,39 @@ fun GalleryScreen(
                             text = stringResource(R.string.likes_count).format(galleryItem.likes),
                             fontSize = 12.sp,
                         )
+                        IconButton(
+                            modifier = Modifier
+                                .align(TopStart)
+                                .padding(8.dp)
+                                .size(24.dp),
+                            onClick = {
+                                onItemFavoriteClick(galleryItem.id.toString())
+                            }
+                        ) {
+                            val favoriteTransition =
+                                updateTransition(targetState = galleryItem.favorite, label = "")
+                            val favoriteIconValue by favoriteTransition.animateFloat(
+                                label = "",
+                                transitionSpec = {
+                                    spring(stiffness = Spring.StiffnessMediumLow)
+                                }
+                            ) { favorite ->
+                                if (favorite) 1f else 0f
+                            }
+
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_favorite),
+                                contentDescription = null
+                            )
+
+                            Icon(
+                                modifier = Modifier
+                                    .scale(favoriteIconValue)
+                                    .alpha(favoriteIconValue),
+                                painter = painterResource(id = R.drawable.ic_favorite_fill),
+                                contentDescription = null
+                            )
+                        }
                     }
                 }
             }

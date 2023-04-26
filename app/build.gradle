@@ -7,6 +7,7 @@ def compose_version = '1.4.2'
 def compose_nav_version = "2.5.3"
 def view_model_compose_version = '2.6.0'
 def coil_version = '2.3.0'
+def version_data_store = '1.0.0'
 
 android {
     compileSdk 33
@@ -76,4 +77,8 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:$coil_version")
+
+    // data-store
+    implementation "androidx.datastore:datastore:$version_data_store"
+    implementation "androidx.datastore:datastore-preferences:$version_data_store"
 }
