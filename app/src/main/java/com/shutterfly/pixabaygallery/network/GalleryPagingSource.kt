@@ -2,7 +2,7 @@ package com.shutterfly.pixabaygallery.network
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.shutterfly.pixabaygallery.models.GalleryItem
+import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,6 +1,6 @@
 package com.shutterfly.pixabaygallery.network
 
-import com.shutterfly.pixabaygallery.models.GalleryData
+import com.shutterfly.pixabaygallery.models.network_models.GalleryData
 import retrofit2.http.GET
 import retrofit2.http.Query
 

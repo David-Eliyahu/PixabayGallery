@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shutterfly.pixabaygallery.R
-import com.shutterfly.pixabaygallery.models.GalleryItem
+import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
 
 class GalleryAdapter : PagingDataAdapter<GalleryItem, GalleryViewHolder>(GalleryComparator) {
 

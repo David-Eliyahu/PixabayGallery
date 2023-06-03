@@ -1,0 +1,59 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
+package com.shutterfly.pixabaygallery.ui.gallery_list.screen
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.shutterfly.pixabaygallery.repositories.GalleryRepository
+import com.shutterfly.pixabaygallery.ui.gallery_list.top_bar.GalleryListScreenTopBar
+import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel
+import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModelFactory
+
+@RootNavGraph(start = true) // sets this as the start destination of the default nav graph
+@Destination
+@Composable
+fun GalleryScreen(
+    viewmodel: GalleryViewModel = viewModel(
+        factory = GalleryViewModelFactory(GalleryRepository())
+    )
+) {
+
+    val imagesPagingItems = viewmodel.imageListObservable.asFlow().collectAsLazyPagingItems()
+    val searchTerm by viewmodel.searchTextFieldValue.collectAsStateWithLifecycle()
+
+    Scaffold(
+        topBar = {
+            GalleryListScreenTopBar()
+        }, content = { paddingValues ->
+            GalleryListScreenContent(
+                modifier = Modifier.padding(paddingValues),
+                imagesPagingItems = imagesPagingItems,
+                searchTerm = searchTerm,
+                onSearchTermChanged = { searchTerm ->
+                    viewmodel.onSearchTermChanged(searchTerm)
+                },
+                onSearchImageClicked = {
+                    viewmodel.onSearchButtonClicked()
+                },
+            )
+        })
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun GalleryItemScreenPreview() {
+    GalleryScreen()
+}
+

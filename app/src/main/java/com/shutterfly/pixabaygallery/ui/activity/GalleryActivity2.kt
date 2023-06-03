@@ -1,4 +1,4 @@
-package com.shutterfly.pixabaygallery.ui
+package com.shutterfly.pixabaygallery.ui.activity
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,11 +9,11 @@ import androidx.lifecycle.lifecycleScope
 import com.shutterfly.pixabaygallery.adapters.GalleryAdapter
 import com.shutterfly.pixabaygallery.databinding.ActivityGalleryBinding
 import com.shutterfly.pixabaygallery.repositories.GalleryRepository
-import com.shutterfly.pixabaygallery.viewmodels.GalleryViewModel
-import com.shutterfly.pixabaygallery.viewmodels.GalleryViewModelFactory
+import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel
+import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModelFactory
 import kotlinx.coroutines.launch
 
-class GalleryActivity : AppCompatActivity() {
+class GalleryActivity2 : AppCompatActivity() {
 
     private lateinit var binding: ActivityGalleryBinding
 
@@ -48,7 +48,7 @@ class GalleryActivity : AppCompatActivity() {
     private fun setupClickListeners() {
         binding.searchButton.setOnClickListener {
             val searchTerm = binding.searchText.text.toString()
-            viewModel.onSearchButtonClicked(searchTerm)
+//            viewModel.onSearchButtonClicked(searchTerm)
         }
     }
 

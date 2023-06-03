@@ -11,9 +11,8 @@
         android:theme="@style/Theme.PixabayGallery">
 
         <activity
-            android:name=".ui.GalleryActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:name=".ui.activity.GalleryActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
