@@ -22,11 +22,15 @@ import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
 
 @Composable
 fun GalleryListItem(item: GalleryItem, onClick: (GalleryItem) -> Unit) {
-    Box(modifier = Modifier.wrapContentSize()) {
+    Box(
+        modifier = Modifier
+            .wrapContentSize()
+            .padding(2.dp)
+    ) {
         Text(
             modifier = Modifier
                 .background(Color.LightGray)
-                .padding(1.dp).zIndex(1f),
+                .zIndex(1f),
             fontSize = 10.sp,
             fontWeight = FontWeight.Bold,
             text = item.likes.toString()
@@ -36,7 +40,6 @@ fun GalleryListItem(item: GalleryItem, onClick: (GalleryItem) -> Unit) {
             contentDescription = "",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .padding(2.dp)
                 .size(100.dp)
                 .clickable {
                     onClick(item)

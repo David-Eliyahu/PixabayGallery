@@ -15,18 +15,21 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.shutterfly.pixabaygallery.repositories.GalleryRepository
+import com.shutterfly.pixabaygallery.ui.destinations.GalleryItemScreenDestination
 import com.shutterfly.pixabaygallery.ui.gallery_list.top_bar.GalleryListScreenTopBar
 import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel
 import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModelFactory
 
-@RootNavGraph(start = true) // sets this as the start destination of the default nav graph
+@RootNavGraph(start = true)
 @Destination
 @Composable
 fun GalleryScreen(
     viewmodel: GalleryViewModel = viewModel(
         factory = GalleryViewModelFactory(GalleryRepository())
-    )
+    ),
+    navigator: DestinationsNavigator
 ) {
 
     val imagesPagingItems = viewmodel.imageListObservable.asFlow().collectAsLazyPagingItems()
@@ -46,6 +49,9 @@ fun GalleryScreen(
                 onSearchImageClicked = {
                     viewmodel.onSearchButtonClicked()
                 },
+                onListItemClicked = { galleryItem ->
+                    navigator.navigate(GalleryItemScreenDestination(galleryItem))
+                }
             )
         })
 }
@@ -54,6 +60,6 @@ fun GalleryScreen(
 @Preview(showBackground = true)
 @Composable
 fun GalleryItemScreenPreview() {
-    GalleryScreen()
+//    GalleryScreen()
 }
 

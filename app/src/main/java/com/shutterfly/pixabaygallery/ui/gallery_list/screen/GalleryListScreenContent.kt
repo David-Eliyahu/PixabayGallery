@@ -17,11 +17,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,20 +26,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.shutterfly.pixabaygallery.R
 import com.shutterfly.pixabaygallery.core.getColorFromViewSystem
 import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
 import com.shutterfly.pixabaygallery.ui.gallery_list.list_item.GalleryListItem
-import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.test.StandardTestDispatcher
 
 @Composable
 fun GalleryListScreenContent(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     imagesPagingItems: LazyPagingItems<GalleryItem>,
     searchTerm: String,
     onSearchTermChanged: (searchTerm: String) -> Unit,
-    onSearchImageClicked: () -> Unit
+    onSearchImageClicked: () -> Unit,
+    onListItemClicked: (GalleryItem) -> Unit
 ) {
     val gridCells = if (LocalConfiguration.current.orientation
         == Configuration.ORIENTATION_LANDSCAPE
@@ -88,8 +87,8 @@ fun GalleryListScreenContent(
         LazyVerticalGrid(columns = GridCells.Fixed(gridCells), content = {
             items(count = imagesPagingItems.itemCount) { index ->
                 val galleryItem = imagesPagingItems[index] ?: return@items
-                GalleryListItem(item = galleryItem) {
-
+                GalleryListItem(item = galleryItem) { galleryItem ->
+                    onListItemClicked(galleryItem)
                 }
             }
         })
@@ -99,5 +98,14 @@ fun GalleryListScreenContent(
 @Preview(showBackground = true)
 @Composable
 fun GalleryListScreenContentPreview() {
-//    GalleryListScreenContent()
+    val data = emptyList<GalleryItem>()
+    val flow = MutableStateFlow(PagingData.from(data))
+    val pagingItems = flow.collectAsLazyPagingItems(StandardTestDispatcher())
+    GalleryListScreenContent(
+        imagesPagingItems = pagingItems,
+        searchTerm = "android",
+        onSearchTermChanged =  {},
+        onSearchImageClicked =  {},
+        onListItemClicked = {}
+    )
 }
