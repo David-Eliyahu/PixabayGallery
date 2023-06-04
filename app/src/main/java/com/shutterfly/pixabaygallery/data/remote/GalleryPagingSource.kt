@@ -2,15 +2,12 @@ package com.shutterfly.pixabaygallery.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
+import com.shutterfly.pixabaygallery.core.constants.NetworkConstants.PIXABAY_BASE_URL
+import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class GalleryPagingSource(private val keyword: String) : PagingSource<Int, GalleryItem>() {
-
-    companion object {
-        private const val PIXABAY_BASE_URL = "https://pixabay.com/api/"
-    }
 
 
     private val retrofit: Retrofit by lazy {
@@ -35,12 +32,17 @@ class GalleryPagingSource(private val keyword: String) : PagingSource<Int, Galle
         return try {
             val images = pixabayService.loadImagesByKey(params.loadSize, currentPage, keyword)
 
+            val galleryItems = mutableListOf<GalleryItem>()
+            images.galleryResponseItems.forEach { responseItem ->
+                galleryItems.add(GalleryItem(responseItem.id,responseItem.previewUrl,responseItem.likes))
+            }
+
             LoadResult.Page(
-                data = images.galleryItems,
+                data = galleryItems,
                 // If we are on the first page, the previous key should be null
                 prevKey = if (currentPage > 1) currentPage - 1 else null,
                 // Null if we reach the end and we are not getting data anymore
-                nextKey = if (images.galleryItems.isNullOrEmpty()) null else currentPage + 1
+                nextKey = if (images.galleryResponseItems.isNullOrEmpty()) null else currentPage + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

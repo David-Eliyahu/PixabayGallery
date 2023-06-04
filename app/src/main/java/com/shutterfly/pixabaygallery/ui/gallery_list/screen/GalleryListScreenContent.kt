@@ -35,7 +35,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.shutterfly.pixabaygallery.R
 import com.shutterfly.pixabaygallery.core.utils.getAttributeFromViewSystem
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
+import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 import com.shutterfly.pixabaygallery.ui.gallery_list.list_item.GalleryListItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.StandardTestDispatcher

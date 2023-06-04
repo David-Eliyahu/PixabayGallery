@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import coil.compose.AsyncImage
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
+import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 
 @Composable
 fun GalleryListItem(item: GalleryItem, onClick: (GalleryItem) -> Unit) {

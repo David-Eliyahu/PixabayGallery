@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.shutterfly.pixabaygallery.core.repository.GalleryRepository
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
+import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

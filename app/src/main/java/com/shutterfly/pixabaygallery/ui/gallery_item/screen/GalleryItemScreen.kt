@@ -19,7 +19,7 @@ import coil.compose.AsyncImage
 import com.ramcosta.composedestinations.annotation.Destination
 import com.shutterfly.pixabaygallery.R
 import com.shutterfly.pixabaygallery.core.utils.SingleTimeLaunchedEffect
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
+import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 import com.shutterfly.pixabaygallery.ui.gallery_item.viewmodel.GalleryItemViewModel
 
 @Destination

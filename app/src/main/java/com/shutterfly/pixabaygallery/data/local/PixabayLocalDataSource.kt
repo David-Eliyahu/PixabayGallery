@@ -1,7 +1,7 @@
 package com.shutterfly.pixabaygallery.data.local
 
 import com.shutterfly.pixabaygallery.models.database_entities.FavoriteGalleryItem
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
+import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 
 class PixabayLocalDataSource(
     private val pixabayDao: PixabayDao

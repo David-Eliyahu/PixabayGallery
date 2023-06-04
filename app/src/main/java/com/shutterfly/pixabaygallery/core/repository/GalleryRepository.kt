@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.shutterfly.pixabaygallery.data.local.PixabayLocalDataSource
 import com.shutterfly.pixabaygallery.data.remote.GalleryPagingSource
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
+import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 
 class GalleryRepository(
     private val pixabayLocalDataSource: PixabayLocalDataSource = PixabayLocalDataSource()
