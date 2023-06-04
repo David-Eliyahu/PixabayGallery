@@ -1,4 +1,4 @@
-package com.shutterfly.pixabaygallery.adapters
+package com.shutterfly.pixabaygallery.core.adapters
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

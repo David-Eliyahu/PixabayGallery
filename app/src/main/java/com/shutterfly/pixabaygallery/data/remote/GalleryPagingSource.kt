@@ -1,4 +1,4 @@
-package com.shutterfly.pixabaygallery.network
+package com.shutterfly.pixabaygallery.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -6,9 +6,9 @@ import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val PIXABAY_BASE_URL = "https://pixabay.com/api/"
-
 class GalleryPagingSource(private val keyword: String) : PagingSource<Int, GalleryItem>() {
+
+    private val PIXABAY_BASE_URL = "https://pixabay.com/api/"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()

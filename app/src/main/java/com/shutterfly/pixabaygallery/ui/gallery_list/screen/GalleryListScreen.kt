@@ -1,14 +1,10 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.shutterfly.pixabaygallery.ui.gallery_list.screen
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -16,7 +12,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.shutterfly.pixabaygallery.repositories.GalleryRepository
+import com.shutterfly.pixabaygallery.core.repositories.GalleryRepository
 import com.shutterfly.pixabaygallery.ui.destinations.GalleryItemScreenDestination
 import com.shutterfly.pixabaygallery.ui.gallery_list.top_bar.GalleryListScreenTopBar
 import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel
@@ -27,7 +23,7 @@ import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModelF
 @Composable
 fun GalleryScreen(
     viewmodel: GalleryViewModel = viewModel(
-        factory = GalleryViewModelFactory(GalleryRepository())
+        factory = GalleryViewModelFactory()
     ),
     navigator: DestinationsNavigator
 ) {
@@ -56,10 +52,4 @@ fun GalleryScreen(
         })
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun GalleryItemScreenPreview() {
-//    GalleryScreen()
-}
 

@@ -6,9 +6,9 @@ import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.shutterfly.pixabaygallery.adapters.GalleryAdapter
+import com.shutterfly.pixabaygallery.core.adapters.GalleryAdapter
 import com.shutterfly.pixabaygallery.databinding.ActivityGalleryBinding
-import com.shutterfly.pixabaygallery.repositories.GalleryRepository
+import com.shutterfly.pixabaygallery.core.repositories.GalleryRepository
 import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel
 import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModelFactory
 import kotlinx.coroutines.launch
@@ -28,9 +28,9 @@ class GalleryActivity2 : AppCompatActivity() {
         binding = ActivityGalleryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupUI()
-        setupClickListeners()
-        setupObservers()
+//        setupUI()
+//        setupClickListeners()
+//        setupObservers()
     }
 
     private fun setupUI() {
