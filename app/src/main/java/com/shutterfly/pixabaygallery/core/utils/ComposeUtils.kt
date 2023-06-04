@@ -10,7 +10,7 @@ import androidx.compose.ui.res.colorResource
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
-fun getAttributeFromViewSystem(color: Int): Color {
+fun getColorFromViewSystem(color: Int): Color {
     return colorResource(LocalContext.current.getColorFromAttrs(color).resourceId)
 }
 

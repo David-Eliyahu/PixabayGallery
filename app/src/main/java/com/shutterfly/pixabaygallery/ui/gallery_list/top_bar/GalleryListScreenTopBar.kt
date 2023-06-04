@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.shutterfly.pixabaygallery.R
+import com.shutterfly.pixabaygallery.core.utils.getColorFromViewSystem
 
 @Composable
 fun GalleryListScreenTopBar() {
@@ -24,7 +25,7 @@ fun GalleryListScreenTopBar() {
             )
         },
         colors = TopAppBarDefaults
-            .topAppBarColors(containerColor = Color(0xFF6200EE))
+            .topAppBarColors(containerColor = getColorFromViewSystem(color = R.attr.colorPrimary))
     )
 }
 

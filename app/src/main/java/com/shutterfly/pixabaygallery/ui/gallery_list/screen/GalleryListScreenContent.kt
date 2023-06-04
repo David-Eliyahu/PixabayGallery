@@ -34,7 +34,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.shutterfly.pixabaygallery.R
-import com.shutterfly.pixabaygallery.core.utils.getAttributeFromViewSystem
+import com.shutterfly.pixabaygallery.core.utils.getColorFromViewSystem
 import com.shutterfly.pixabaygallery.models.ui_models.GalleryItem
 import com.shutterfly.pixabaygallery.ui.gallery_list.list_item.GalleryListItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -67,8 +67,8 @@ fun GalleryListScreenContent(
                 modifier = Modifier
                     .weight(1f),
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = getAttributeFromViewSystem(color = R.attr.colorSecondary),
-                    unfocusedContainerColor = getAttributeFromViewSystem(color = R.attr.colorSecondary)
+                    focusedContainerColor = getColorFromViewSystem(color = R.attr.colorSecondary),
+                    unfocusedContainerColor = getColorFromViewSystem(color = R.attr.colorSecondary)
                 ),
                 textStyle = LocalTextStyle.current.copy(
                     textDirection = TextDirection.Content,
@@ -94,7 +94,7 @@ fun GalleryListScreenContent(
             )
             Image(
                 modifier = Modifier
-                    .background(getAttributeFromViewSystem(color = R.attr.colorSecondaryVariant))
+                    .background(getColorFromViewSystem(color = R.attr.colorSecondaryVariant))
                     .padding(16.dp)
                     .wrapContentSize()
                     .clickable {

@@ -14,5 +14,4 @@ class GalleryActivity : AppCompatActivity() {
             DestinationsNavHost(navGraph = NavGraphs.root)
         }
     }
-
 }

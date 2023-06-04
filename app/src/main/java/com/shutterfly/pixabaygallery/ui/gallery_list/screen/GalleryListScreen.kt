@@ -20,7 +20,7 @@ import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModelF
 @RootNavGraph(start = true)
 @Destination
 @Composable
-fun GalleryScreen(
+fun GalleryListScreen(
     viewmodel: GalleryViewModel = viewModel(
         factory = GalleryViewModelFactory()
     ),
