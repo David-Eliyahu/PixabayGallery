@@ -3,7 +3,10 @@ package com.shutterfly.pixabaygallery.ui.gallery_list.list_item
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -22,14 +25,14 @@ import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
 
 @Composable
 fun GalleryListItem(item: GalleryItem, onClick: (GalleryItem) -> Unit) {
-    Box(
-        modifier = Modifier
-            .wrapContentSize()
-            .padding(2.dp)
+    Column(modifier = Modifier
+        .wrapContentSize()
+        .padding(2.dp)
     ) {
         Text(
             modifier = Modifier
                 .background(Color.LightGray)
+                .fillMaxWidth()
                 .zIndex(1f),
             fontSize = 10.sp,
             fontWeight = FontWeight.Bold,
@@ -40,7 +43,8 @@ fun GalleryListItem(item: GalleryItem, onClick: (GalleryItem) -> Unit) {
             contentDescription = "",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .size(100.dp)
+                .height(100.dp)
+                .fillMaxWidth()
                 .clickable {
                     onClick(item)
                 }
