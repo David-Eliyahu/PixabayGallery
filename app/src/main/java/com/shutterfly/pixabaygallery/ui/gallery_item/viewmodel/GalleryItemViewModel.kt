@@ -1,19 +1,16 @@
 package com.shutterfly.pixabaygallery.ui.gallery_item.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.shutterfly.pixabaygallery.core.repositories.GalleryRepository
+import com.shutterfly.pixabaygallery.core.repository.GalleryRepository
 import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
-import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class GalleryItemViewModel(
-    private val galleryRepository: GalleryRepository = GalleryRepository(),
-    private val savedStateHandle: SavedStateHandle = SavedStateHandle()
+    private val galleryRepository: GalleryRepository = GalleryRepository()
 ) : ViewModel() {
 
     private val _isFavoriteItem = MutableStateFlow(false)

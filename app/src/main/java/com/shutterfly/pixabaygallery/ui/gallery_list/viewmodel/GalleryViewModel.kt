@@ -2,7 +2,7 @@ package com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.shutterfly.pixabaygallery.core.repositories.GalleryRepository
+import com.shutterfly.pixabaygallery.core.repository.GalleryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

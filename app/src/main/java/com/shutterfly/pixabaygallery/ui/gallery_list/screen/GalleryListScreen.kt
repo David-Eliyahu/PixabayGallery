@@ -12,7 +12,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.shutterfly.pixabaygallery.core.repositories.GalleryRepository
 import com.shutterfly.pixabaygallery.ui.destinations.GalleryItemScreenDestination
 import com.shutterfly.pixabaygallery.ui.gallery_list.top_bar.GalleryListScreenTopBar
 import com.shutterfly.pixabaygallery.ui.gallery_list.viewmodel.GalleryViewModel

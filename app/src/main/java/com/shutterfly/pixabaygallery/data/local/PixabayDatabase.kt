@@ -6,7 +6,6 @@ import androidx.room.RoomDatabase
 import com.shutterfly.pixabaygallery.core.app.App
 import com.shutterfly.pixabaygallery.core.constants.Constants.PIXABAY_DATABASE
 import com.shutterfly.pixabaygallery.models.database_entities.FavoriteGalleryItem
-import com.shutterfly.pixabaygallery.models.network_models.GalleryItem
 
 @Database(entities = [FavoriteGalleryItem::class], version = 1, exportSchema = false)
 abstract class PixabayDatabase : RoomDatabase() {

@@ -8,7 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class GalleryPagingSource(private val keyword: String) : PagingSource<Int, GalleryItem>() {
 
-    private val PIXABAY_BASE_URL = "https://pixabay.com/api/"
+    companion object {
+        private const val PIXABAY_BASE_URL = "https://pixabay.com/api/"
+    }
+
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
